@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="http://cdn.bootcss.com/vue/2.0.0-rc.1/vue.min.js"></script>
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <div id="box">
+        <span v-bind:style="{ display:showText }" v-on:click="edit">{{content}}</span>
+        <input v-model="content" type="text" :style="{ display:showInput }">
+        <input type="button" value="保存" :style="{ display:showInput }" @click="save">
+        <input type="button" value="取消" :style="{ display:showInput }" @click="cancel">
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    var vm = new Vue({
+      el:'#app',
+      data:{
+        showText:"inline",
+        showInput:"none",
+        content:'无名氏',
+        oldValue:''
+      },
+
+      methods:{
+        edit:function () {
+          this.showText = "none";
+          this.showInput = "inline";
+          this.oldValue = this.content;
+        },
+        save:function () {
+          this.showText = "inline";
+          this.showInput = "none";
+        },
+        cancel:function () {
+          this.showText = "inline";
+          this.showInput = "none";
+          this.content = this.oldValue;
+        }
+      }
+    });
+  </script>
+</body>
+</html>
